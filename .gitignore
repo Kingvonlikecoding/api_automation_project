@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Allure reports
+allure-results/
+allure-report/
