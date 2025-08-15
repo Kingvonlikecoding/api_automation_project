@@ -59,4 +59,5 @@ jobs:
         body: |
           构建结果：${{ job.status }}
           报告地址：https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
-        to: george12770@163.com
+        # to: george12770@163.com
+        to: ${{ secrets.MAIL_USER }}
