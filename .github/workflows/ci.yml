@@ -1,0 +1,61 @@
+name: API-Test-CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️⃣ 把 当前仓库的代码 拉取到 运行器（runner）里，供后续步骤使用。
+    - uses: actions/checkout@v4
+
+    # 2️⃣ 装 Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # 3️⃣ 装依赖
+    - name: Install deps
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # 4️⃣ 跑测试
+    - name: Run pytest
+      run: |
+        python -m pytest
+
+    # 5️⃣ 生成 Allure 报告
+    - name: Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+
+    # 6️⃣ 部署到 GitHub Pages
+    - name: Deploy Report to Pages
+      uses: peaceiris/actions-gh-pages@v4
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-history
+
+    # 7️⃣ 邮件通知
+    - name: Send mail
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.qq.com
+        server_port: 465
+        username: ${{ secrets.MAIL_USER }}
+        password: ${{ secrets.MAIL_PASS }}
+        subject: "GitHub Actions - ${{ job.status }}"
+        body: |
+          构建结果：${{ job.status }}
+          报告地址：https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        to: george12770@163.com
