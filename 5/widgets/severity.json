@@ -1,0 +1,1 @@
+[{"uid":"59f0d3a028670c92","name":"Test Get All Posts - Basic Validation","time":{"start":1755269337813,"stop":1755269337840,"duration":27},"status":"passed","severity":"normal"},{"uid":"114466c299fce00f","name":"Test Get All Posts - Content Validation with Pydantic","time":{"start":1755269337841,"stop":1755269337862,"duration":21},"status":"passed","severity":"normal"}]

@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"This test validates the structure and data types of each post in the response using Pydantic.","21","Test Get All Posts - Content Validation with Pydantic","tests","Fri Aug 15 14:48:57 UTC 2025","passed","Fri Aug 15 14:48:57 UTC 2025","TestGetPosts","test_posts_api","",""
+"This test verifies that the API returns a list of posts and basic status code.","27","Test Get All Posts - Basic Validation","tests","Fri Aug 15 14:48:57 UTC 2025","passed","Fri Aug 15 14:48:57 UTC 2025","TestGetPosts","test_posts_api","",""
